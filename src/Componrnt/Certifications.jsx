@@ -13,13 +13,13 @@ const certs = [
   {
     title: "Artificial Intelligence",
     issuer: "Accenture",
-    image: "public/pngegg (11).png",
+    image: "/accenture.png",
     link: "https://drive.google.com/file/d/1zhzoKSNZsxQ78A-IthWus5YK1KweiqLY/view?usp=drive_link",
   },
   {
     title: "User Experience (UX)",
     issuer: "Accenture",
-    image: "public/pngegg (11).png",
+    image: "/accenture.png",
     link: "https://drive.google.com/file/d/1Eis9jrq-ZonTDXs_EntVgGZPE8keaMsy/view?usp=drive_link",
   }
 ];
