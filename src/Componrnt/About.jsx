@@ -1,6 +1,4 @@
 import React from 'react';
-import { Canvas } from '@react-three/fiber';
-import { Stars } from '@react-three/drei';
 import { motion } from 'framer-motion';
 
 const highlights = [
@@ -12,27 +10,24 @@ const highlights = [
 
 const About = () => {
   return (
-    <section id="about" className="relative min-h-screen bg-black flex items-center py-24 px-6 overflow-hidden">
+    <section id="about" className="relative min-h-screen bg-black flex items-center py-20 px-6 overflow-hidden">
       
-      {/* --- 1. THE SIGNATURE STAR FIELD (FIXED FOR MOBILE) --- */}
-      <div className="absolute inset-0 z-0 pointer-events-none">
-        <Canvas 
-          camera={{ position: [0, 0, 1] }}
-          gl={{ 
-            alpha: true, // Transparent background ke liye zaroori hai
-            antialias: false, // Mobile performance boost
-            powerPreference: "high-performance" 
-          }}
-        >
-          {/* Opacity-50 ki jagah yahan 'factor' aur 'fade' se stars ko dhundla karo */}
-          <Stars radius={100} depth={50} count={3000} factor={4} saturation={0} fade speed={1} />
-        </Canvas>
+      {/* --- 1. CLEAN BACKGROUND GLOW (No 3D/Canvas = Zero Lag) --- */}
+      <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
+        {/* Subtle Green Nebula Glow */}
+        <div className="absolute top-1/4 -left-20 w-80 h-80 bg-green-500/10 blur-[120px] rounded-full"></div>
+        <div className="absolute bottom-1/4 -right-20 w-80 h-80 bg-green-500/5 blur-[120px] rounded-full"></div>
+        
+        {/* Static CSS Stars (Simple & Fast) */}
+        <div className="absolute inset-0 opacity-20" 
+             style={{ backgroundImage: `radial-gradient(circle, #ffffff 1px, transparent 1px)`, backgroundSize: '50px 50px' }}>
+        </div>
       </div>
 
       <div className="container mx-auto relative z-10 max-w-6xl">
         
         {/* HEADING SECTION */}
-        <div className="mb-20">
+        <div className="mb-16">
           <motion.div
             initial={{ opacity: 0, x: -20 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -40,21 +35,22 @@ const About = () => {
             className="flex items-center gap-3 mb-4"
           >
             <div className="h-[1px] w-8 bg-green-500"></div>
-            <span className="text-green-500 font-mono text-xs tracking-[0.5em] uppercase font-bold">About Me</span>
+            <span className="text-green-500 font-mono text-[10px] tracking-[0.5em] uppercase font-bold">About Me</span>
           </motion.div>
           
-          <h3 className="text-3xl md:text-5xl font-black text-white uppercase tracking-tighter leading-none">
+          <h3 className="text-4xl md:text-5xl font-black text-white uppercase tracking-tighter leading-none">
             Passionate<span className="text-green-500 italic"> Developer</span>
           </h3>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
           
-          {/* --- LEFT: TYPOGRAPHY --- */}
+          {/* --- LEFT: TYPOGRAPHY (TEXT SAME REHGA) --- */}
           <motion.div 
-            initial={{ opacity: 0, y: 30 }}
+            initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            className="space-y-10"
+            viewport={{ once: true }}
+            className="space-y-8"
           >
             <div className="space-y-6 text-gray-400 text-lg md:text-xl font-light leading-relaxed">
               <p className="border-l-2 border-green-500/30 pl-6">
@@ -66,30 +62,27 @@ const About = () => {
             </div>
 
             {/* Premium Skill Tags */}
-            <div className="flex flex-wrap gap-3 pl-6">
+            <div className="flex flex-wrap gap-2 pl-6">
               {["React", "Node", "Java", "DSA", "Three.js", "Tailwind"].map((tag, i) => (
-                <span key={i} className="px-4 py-2 rounded-full border border-white/10 bg-white/[0.03] text-white/60 text-[9px] font-black uppercase tracking-widest hover:border-green-500 hover:text-green-500 transition-all">
+                <span key={i} className="px-4 py-2 rounded-lg border border-white/10 bg-white/[0.03] text-white/60 text-[9px] font-black uppercase tracking-widest">
                   {tag}
                 </span>
               ))}
             </div>
           </motion.div>
 
-          {/* --- RIGHT: 3D-FEEL FLOATING CARDS --- */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 relative">
-            {/* Background Glow */}
-            <div className="absolute inset-0 bg-green-500/10 blur-[100px] rounded-full -z-10 animate-pulse"></div>
-
+          {/* --- RIGHT: CLEAN GLASS CARDS (Fast & Responsive) --- */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 relative">
             {highlights.map((item, index) => (
               <motion.div
                 key={index}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                whileHover={{ y: -5 }}
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.1 }}
-                className="p-8 rounded-[2rem] bg-white/[0.03] border border-white/5 backdrop-blur-3xl group hover:border-green-500/30 transition-all relative overflow-hidden"
+                className="p-6 md:p-8 rounded-[1.5rem] bg-white/[0.03] border border-white/5 backdrop-blur-md group hover:border-green-500/30 transition-all relative overflow-hidden"
               >
+                {/* ID Background Number */}
                 <span className="absolute -right-2 -top-2 text-6xl font-black text-white/[0.02] group-hover:text-green-500/5 transition-colors">
                   {item.id}
                 </span>
@@ -112,11 +105,8 @@ const About = () => {
         </div>
       </div>
 
-      {/* UI Overlay */}
-      <div className="absolute bottom-10 right-10 hidden md:flex flex-col gap-1 text-[8px] font-mono text-white/20 uppercase tracking-[1em] rotate-90 origin-bottom-right">
-        <span>Bhagalpur_In_Cloud</span>
-        <span>Build_Status: 100%</span>
-      </div>
+      {/* Subtle Bottom Glow Overlay */}
+      <div className="absolute -bottom-20 left-1/2 -translate-x-1/2 w-full h-40 bg-green-500/5 blur-[100px] pointer-events-none"></div>
     </section>
   );
 };
