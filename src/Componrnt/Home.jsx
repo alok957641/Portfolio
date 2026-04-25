@@ -158,9 +158,22 @@ const Home = () => {
           <p className="text-gray-400 text-xs md:text-sm leading-relaxed max-w-[280px] md:ml-auto">
             Expert in solving complex algorithmic challenges using Java. Deep understanding of Data Structures to write optimized, high-efficiency code. Focused on logic-building and technical problem-solving.
           </p>
-          <button className="mt-8 px-8 py-3 bg-white text-black font-black rounded-full hover:bg-green-500 hover:text-white transition-all text-[9px] tracking-widest uppercase shadow-[0_0_20px_rgba(255,255,255,0.1)]">
-            Check My Logic
-          </button>
+         <motion.a
+  // 1. File ka path (Jo tune public folder mein rakha hai)
+  href="/Alok_Resume.pdf" 
+  
+  // 2. Download attribute (Isse click pe download start hoga)
+  download="Alok_Resume.pdf"
+  
+  // Hover aur Tap animations (Tere portfolio ki vibe ke liye)
+  whileHover={{ scale: 1.05 }}
+  whileTap={{ scale: 0.95 }}
+  
+  // Teri wahi original classes jo tune di thi
+  className="mt-8 px-8 py-3 bg-white text-black font-black rounded-full hover:bg-green-500 hover:text-white transition-all text-[9px] tracking-widest uppercase shadow-[0_0_20px_rgba(255,255,255,0.1)] inline-block text-center"
+>
+  Download CV_
+</motion.a>
         </motion.div>
       </div>
     </section>
