@@ -9,7 +9,7 @@ const projects = [
     title: "Swigo – Food Delivery",
     category: "Full Stack Platform",
     
-    image: "https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?q=80&w=2481&auto=format&fit=crop",
+    image: "https://i.pinimg.com/1200x/9a/bf/3e/9abf3e37c5d47cafad5011523e38a4d5.jpg",
     tech: ["React", "Redux", "Node.js", "MongoDB", "Socket.IO"],
     desc: "Engineering a full-stack food delivery platform supporting 3 distinct dashboards – User, Admin, and Delivery Partner – covering the complete order lifecycle. JWT-based RBAC ensures zero cross-role data leakage. Real-time order tracking via Socket.IO enabling sub-second bidirectional updates.",
     status: "Ongoing",
@@ -18,7 +18,7 @@ const projects = [
   {
     title: "NextHire.AI",
     category: "AI Mock Interview Platform",
-    image: "https://images.unsplash.com/photo-1586717791821-3f44a563fa4c?q=80&w=2670&auto=format&fit=crop",
+    image: "https://i.pinimg.com/1200x/48/19/a9/4819a94d5fde7f464accb63ebcdb3539.jpg",
     tech: ["React", "Redux", "Node.js", "MongoDB", "Firebase", "Recharts"],
     desc: "AI interview platform with 3 modes (HR, Technical, Confidence Detection). PDF resume parsing auto-extracts skills for 100% personalized questions. Real-time analytics dashboard scoring candidates across technical depth, communication clarity, and confidence. Automated downloadable PDF performance reports.",
     status: "Live 2025",
@@ -27,7 +27,7 @@ const projects = [
   {
     title: "AI Resume Builder",
     category: "SaaS Platform",
-    image: "https://images.unsplash.com/photo-1586281380349-632531db7ed4?q=80&w=2670&auto=format&fit=crop",
+    image: "https://i.pinimg.com/736x/af/6e/e1/af6ee127828c7e8749b61b4e5fc85520.jpg",
     tech: ["React", "TypeScript", "Node.js", "MongoDB", "Gemini AI", "Razorpay"],
     desc: "Full-stack AI-powered SaaS resume builder with 11+ templates and 2-tier subscription (Free/Pro ₹299/mo) via Razorpay. Google Gemini API powers AI content improvement across 4 modules. ATS score checker, real-time preview, pixel-perfect PDF export, and shareable resume links with custom slugs.",
     status: "Live 2025",
