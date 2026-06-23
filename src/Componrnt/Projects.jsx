@@ -3,7 +3,35 @@ import { Canvas } from '@react-three/fiber';
 import { Stars } from '@react-three/drei';
 import { motion } from 'framer-motion';
 
+// 🔥 NAYA ORDER: Pehle 3 important projects, phir baaki 2
 const projects = [
+  {
+    title: "Zyngo Food Delivery",
+    category: "Food Delivery Platform",
+    image: "https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?q=80&w=2481&auto=format&fit=crop",
+    tech: ["React Native", "Firebase", "Stripe", "Live Tracking"],
+    desc: "A complete food delivery app with real-time GPS tracking, secure payments via Stripe, and Firebase authentication. Optimized for both iOS and Android.",
+    status: "Live",
+    liveLink: "https://zyngofood.com" // 🔴 Yahan apni real link daal de
+  },
+  {
+    title: "NextHire.ai",
+    category: "AI Recruitment Platform",
+    image: "https://images.unsplash.com/photo-1586717791821-3f44a563fa4c?q=80&w=2670&auto=format&fit=crop",
+    tech: ["Next.js", "AI", "PostgreSQL", "Tailwind"],
+    desc: "AI-powered recruitment platform that automates candidate screening, resume parsing, and intelligent job matching using machine learning algorithms.",
+    status: "Live",
+    liveLink: "https://nexthire.ai" // 🔴 Yahan apni real link daal de
+  },
+  {
+    title: "ResumeBuilder Pro",
+    category: "Career Tools",
+    image: "https://images.unsplash.com/photo-1586281380349-632531db7ed4?q=80&w=2670&auto=format&fit=crop",
+    tech: ["React", "PDF Generation", "MongoDB", "Redux"],
+    desc: "Professional resume builder with customizable templates, real-time preview, and one-click PDF export. Includes ATS-friendly formatting options.",
+    status: "Live",
+    liveLink: "https://resumebuilder.com" // 🔴 Yahan apni real link daal de
+  },
   {
     title: "NowInfoTech",
     category: "Corporate Platform",
@@ -11,7 +39,7 @@ const projects = [
     tech: ["React", "Tailwind", "Responsive"],
     desc: "A fully responsive business interface built with React. Focused on modular components and seamless navigation across all device breakpoints.",
     status: "Live",
-    liveLink: "https://infotech-company.vercel.app/" // Yahan apni real link daal de bhai
+    liveLink: "https://infotech-company.vercel.app/"
   },
   {
     title: "AiBuzz Media",
@@ -20,16 +48,7 @@ const projects = [
     tech: ["React", "Nodemailer", "Tailwind"],
     desc: "A specialized agency portal featuring custom Nodemailer integration for automated lead generation and secure client communication.",
     status: "Live",
-    liveLink: "https://aibuzz.media" // Yahan apni real link daal de bhai
-  },
-  {
-    title: "Swigo Delivery",
-    category: "Food-Tech Ecosystem",
-    image: "https://images.unsplash.com/photo-1526367790999-0150786486a9?q=80&w=2671&auto=format&fit=crop",
-    tech: ["Firebase", "Redux", "MongoDB", "Live-Track"],
-    desc: "An advanced delivery app utilizing Firebase Auth, Redux for state management, and real-time order tracking with MongoDB integration.",
-    status: "Upcoming",
-    liveLink: "#" // Swigo abhi aane wala hai toh link empty rakha hai
+    liveLink: "https://aibuzz.media"
   }
 ];
 
@@ -47,17 +66,16 @@ const Projects = () => {
   return (
     <section id='projects' className="relative min-h-screen bg-black py-20 px-6 overflow-hidden flex flex-col justify-center">
       
-      {/* 1. STAR BACKGROUND */}
+      {/* STAR BACKGROUND */}
       <div className="absolute inset-0 z-0">
         <Canvas>
           <Stars radius={100} depth={50} count={5000} factor={4} saturation={0} fade speed={1} />
         </Canvas>
       </div>
 
-       <div className="container mx-auto relative z-10 max-w-6xl">
+      <div className="container mx-auto relative z-10 max-w-6xl">
         
-        {/* HEADER & CONTROLS */}
-          {/* HEADING: Chota aur Sharp (Better than Screenshot) */}
+        {/* HEADER */}
         <div className="mb-20">
           <motion.div
             initial={{ opacity: 0, x: -20 }}
@@ -68,15 +86,15 @@ const Projects = () => {
             <div className="h-[1px] w-8 bg-green-500"></div>
             <span className="text-green-500 font-mono text-xs tracking-[0.5em] uppercase">My Work</span>
           </motion.div>
-                 <div className="mb-16">
-
-          <h3 className="text-3xl md:text-4xl font-black text-white uppercase tracking-tighter">
-            Featured <span className="text-green-500 italic"> Projects</span>
-          </h3>
+          
+          <div className="mb-16">
+            <h3 className="text-3xl md:text-4xl font-black text-white uppercase tracking-tighter">
+              Featured <span className="text-green-500 italic"> Projects</span>
+            </h3>
+          </div>
         </div>
-        </div>
 
-        {/* 2. COMPACT SLIDER */}
+        {/* PROJECT SLIDER */}
         <div 
           ref={scrollRef}
           className="flex gap-6 overflow-x-auto scrollbar-hide snap-x snap-mandatory pb-10 px-2"
@@ -88,11 +106,12 @@ const Projects = () => {
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
+              transition={{ delay: index * 0.1 }} // 🔥 Har card thoda delay se aaye
               className="min-w-[85vw] md:min-w-[380px] snap-center group"
             >
               <div className="bg-white/[0.03] border border-white/10 rounded-[2rem] overflow-hidden hover:border-green-500/30 transition-all duration-500 backdrop-blur-xl h-full flex flex-col">
                 
-                {/* PROJECT IMAGE (Clickable Link) */}
+                {/* PROJECT IMAGE */}
                 <a href={project.liveLink} target="_blank" rel="noopener noreferrer" className="relative h-48 overflow-hidden block">
                   <img src={project.image} alt={project.title} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 opacity-60 group-hover:opacity-100" />
                   <div className="absolute top-4 right-4 bg-black/60 backdrop-blur-md px-3 py-1 rounded-full border border-white/10">
@@ -132,7 +151,7 @@ const Projects = () => {
                       : "bg-white/[0.05] border border-white/10 text-white hover:bg-green-500 hover:text-black hover:border-green-500"
                     }`}
                   >
-                    {project.liveLink === "#" ? "Mission Pending" : "Execute Mission"}
+                    {project.liveLink === "#" ? "Mission Pending" : "🚀 Live Demo"}
                   </a>
                 </div>
               </div>
@@ -140,6 +159,21 @@ const Projects = () => {
           ))}
         </div>
 
+        {/* 🔥 SCROLL BUTTONS - Agar chahiye toh */}
+        <div className="flex justify-center gap-4 mt-8">
+          <button 
+            onClick={() => scroll('left')}
+            className="bg-white/5 border border-white/10 text-white p-3 rounded-full hover:bg-green-500 hover:text-black transition-all duration-300"
+          >
+            ←
+          </button>
+          <button 
+            onClick={() => scroll('right')}
+            className="bg-white/5 border border-white/10 text-white p-3 rounded-full hover:bg-green-500 hover:text-black transition-all duration-300"
+          >
+            →
+          </button>
+        </div>
       </div>
       
       {/* Background Glow */}
