@@ -178,4 +178,4 @@ const Home = () => {
       </div>
     </section>
   );
-}; 
+};
