@@ -16,193 +16,187 @@ const Home = () => {
   return (
     <section className="relative min-h-screen w-full bg-black flex items-center justify-center overflow-hidden">
       
-      {/* ====== 1. BACKGROUND EFFECTS ====== */}
-      {/* AI Neural Network Grid */}
-      <div className="absolute inset-0 z-0 opacity-20">
-        <div className="absolute inset-0 bg-[linear-gradient(to_right,#22c55e20_1px,transparent_1px),linear-gradient(to_bottom,#22c55e20_1px,transparent_1px)] bg-[size:50px_50px]"></div>
+      {/* ====== 1. BACKGROUND - REFRENCE IMAGE STYLE ====== */}
+      {/* Gradient Orbs - Green & Cyan blend */}
+      <div className="absolute top-[-20%] right-[-10%] w-[600px] h-[600px] bg-gradient-to-br from-green-500/20 to-cyan-500/10 rounded-full blur-[150px] pointer-events-none"></div>
+      <div className="absolute bottom-[-20%] left-[-10%] w-[600px] h-[600px] bg-gradient-to-tr from-green-500/10 to-cyan-500/10 rounded-full blur-[150px] pointer-events-none"></div>
+
+      {/* Grid Pattern - Like reference image */}
+      <div className="absolute inset-0 z-0 opacity-[0.03]">
+        <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff10_1px,transparent_1px),linear-gradient(to_bottom,#ffffff10_1px,transparent_1px)] bg-[size:80px_80px]"></div>
       </div>
 
-      {/* Gradient Orbs */}
-      <div className="absolute top-[-20%] right-[-10%] w-[500px] h-[500px] bg-green-500/10 rounded-full blur-[150px] pointer-events-none"></div>
-      <div className="absolute bottom-[-20%] left-[-10%] w-[500px] h-[500px] bg-blue-500/10 rounded-full blur-[150px] pointer-events-none"></div>
-
-      {/* ====== 2. MAIN CONTENT ====== */}
-      <div className="container mx-auto px-6 relative z-10 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center min-h-[80vh]">
+      {/* ====== 2. MAIN CONTENT - 3 COLUMN LAYOUT ====== */}
+      <div className="container mx-auto px-6 relative z-10 grid grid-cols-1 md:grid-cols-3 items-center gap-8 min-h-[80vh]">
         
-        {/* ====== LEFT: TEXT CONTENT ====== */}
+        {/* ====== LEFT: MERN STACK ====== */}
         <motion.div 
-          initial={{ opacity: 0, x: -50 }}
+          initial={{ opacity: 0, x: -40 }}
           animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.8, ease: "easeOut" }}
-          className="order-2 lg:order-1"
+          transition={{ duration: 0.6, ease: "easeOut" }}
+          className="order-2 md:order-1 text-left"
         >
-          {/* Badge */}
-          <motion.div 
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ delay: 0.2 }}
-            className="inline-flex items-center gap-2 bg-green-500/10 border border-green-500/20 px-4 py-1.5 rounded-full mb-6"
-          >
-            <span className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></span>
-            <span className="text-green-400 text-[10px] font-mono tracking-[0.3em] uppercase">AI-Powered Solutions</span>
-          </motion.div>
-
-          {/* Heading */}
-          <motion.h1 
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.3 }}
-            className="text-4xl md:text-6xl lg:text-7xl font-black text-white leading-[1.1] mb-6"
-          >
-            Elevate Your Business
-            <br />
-            Using{" "}
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-cyan-400">
-              AI-Driven
-            </span>
-            <br />
-            Automation
-          </motion.h1>
-
-          {/* Description */}
-          <motion.p 
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.4 }}
-            className="text-gray-400 text-sm md:text-base max-w-lg leading-relaxed mb-8"
-          >
-            An innovative software platform that simplifies your tasks, enhances efficiency, 
-            and helps your business grow seamlessly.
-          </motion.p>
-
-          {/* Buttons */}
-          <motion.div 
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.5 }}
-            className="flex flex-wrap gap-4 mb-10"
-          >
-            <motion.a 
-              href="#"
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              className="px-8 py-3 bg-gradient-to-r from-green-500 to-emerald-600 text-black font-bold rounded-full text-sm uppercase tracking-wider shadow-[0_0_30px_rgba(34,197,94,0.3)] hover:shadow-[0_0_50px_rgba(34,197,94,0.5)] transition-all"
-            >
-              Start Free Trial
-            </motion.a>
-            <motion.a 
-              href="#"
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              className="px-8 py-3 border border-white/20 text-white font-bold rounded-full text-sm uppercase tracking-wider hover:bg-white/5 transition-all backdrop-blur-sm"
-            >
-              Book a Demo
-            </motion.a>
-          </motion.div>
-
-          {/* Trust Badge */}
-          <motion.div 
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.6 }}
-            className="flex items-center gap-6"
-          >
-            <div className="flex -space-x-2">
-              {[1, 2, 3, 4].map((i) => (
-                <div key={i} className="w-8 h-8 rounded-full border-2 border-black bg-gradient-to-br from-gray-600 to-gray-400"></div>
-              ))}
-            </div>
-            <div>
-              <p className="text-white font-bold text-sm">10,000+</p>
-              <p className="text-gray-500 text-[10px] uppercase tracking-wider">Teams Worldwide</p>
-            </div>
-          </motion.div>
+          {/* Line + Label - Refrence style */}
+          <div className="flex items-center gap-3 text-green-500 mb-3">
+            <div className="w-8 h-[1px] bg-gradient-to-r from-green-500 to-transparent"></div>
+            <span className="text-[10px] tracking-[0.3em] font-mono font-bold uppercase text-green-400">Software Dev</span>
+          </div>
+          
+          <h2 className="text-4xl md:text-5xl font-black text-white leading-tight mb-4">
+            MERN <span className="text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-cyan-400">Stack.</span>
+          </h2>
+          
+          <p className="text-gray-400 text-xs md:text-sm leading-relaxed max-w-[260px]">
+            Specialized in building scalable web apps with MongoDB, Express, React, and Node.js. I focus on crafting seamless UIs and robust backend architectures.
+          </p>
+          <div className="mt-3 flex flex-wrap gap-2">
+            {["MongoDB", "Express", "React", "Node"].map((tech, i) => (
+              <span key={i} className="text-[8px] font-bold text-green-400/70 border border-green-500/20 px-2.5 py-1 rounded-full bg-green-500/5 uppercase tracking-wider">
+                {tech}
+              </span>
+            ))}
+          </div>
         </motion.div>
 
-        {/* ====== RIGHT: 3D VISUALIZATION ====== */}
-        <motion.div 
-          initial={{ opacity: 0, scale: 0.9 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.8, delay: 0.2 }}
-          className="order-1 lg:order-2 h-[400px] md:h-[500px] lg:h-[600px] relative"
-        >
+        {/* ====== CENTER: 3D VISUALIZATION (NO MODEL) ====== */}
+        <div className="h-[400px] md:h-[650px] w-full order-1 md:order-2 relative flex justify-center items-center">
+          
           {isMobile ? (
-            /* Mobile Static Visualization */
-            <div className="w-full h-full flex items-center justify-center">
-              <div className="relative w-64 h-64">
-                <div className="absolute inset-0 bg-gradient-to-br from-green-500/20 to-cyan-500/20 rounded-full blur-[80px]"></div>
-                <div className="absolute inset-0 flex items-center justify-center">
-                  <div className="w-48 h-48 rounded-full border-2 border-green-500/30 flex items-center justify-center backdrop-blur-sm bg-black/40">
-                    <div className="text-center">
-                      <div className="text-5xl mb-2">⚡</div>
-                      <p className="text-green-400 text-xs font-mono">AI Engine</p>
-                    </div>
-                  </div>
+            /* --- MOBILE STATIC --- */
+            <div className="relative w-64 h-64 flex items-center justify-center">
+              <div className="absolute inset-0 bg-gradient-to-br from-green-500/20 to-cyan-500/20 rounded-full blur-[100px] animate-pulse"></div>
+              <div className="relative w-48 h-48 rounded-full border border-green-500/20 flex items-center justify-center backdrop-blur-sm bg-black/40">
+                <div className="text-center">
+                  <div className="text-6xl mb-2">⚡</div>
+                  <p className="text-green-400 text-[9px] font-mono tracking-widest">ALOK</p>
+                  <p className="text-gray-500 text-[7px] font-mono tracking-wider">Full Stack</p>
                 </div>
-                {/* Floating Particles */}
-                <div className="absolute top-0 right-0 w-12 h-12 bg-green-500/20 rounded-full blur-xl animate-pulse"></div>
-                <div className="absolute bottom-0 left-0 w-16 h-16 bg-cyan-500/20 rounded-full blur-xl animate-pulse delay-700"></div>
+              </div>
+              {/* Floating tags */}
+              <div className="absolute -top-2 -right-2 bg-green-500/10 border border-green-500/30 px-3 py-1 rounded-full backdrop-blur-xl">
+                <span className="text-green-400 text-[8px] font-black font-mono">React.js</span>
+              </div>
+              <div className="absolute -bottom-2 -left-2 bg-cyan-500/10 border border-cyan-500/30 px-3 py-1 rounded-full backdrop-blur-xl">
+                <span className="text-cyan-400 text-[8px] font-black font-mono">Node.js</span>
               </div>
             </div>
           ) : (
-            /* Desktop 3D Visualization */
-            <Canvas camera={{ position: [0, 0, 8], fov: 45 }} className="rounded-2xl">
-              {/* Stars Background */}
-              <Stars radius={50} depth={50} count={2000} factor={4} saturation={0} fade speed={0.5} />
+            /* --- DESKTOP 3D --- */
+            <Canvas camera={{ position: [0, 0, 6], fov: 40 }} className="rounded-2xl">
+              {/* Stars */}
+              <Stars radius={80} depth={60} count={4000} factor={4} saturation={0} fade speed={0.5} />
               
-              {/* Main Object */}
-              <Float speed={1.5} rotationIntensity={0.3} floatIntensity={0.5}>
+              {/* Main Object - Torus Knot */}
+              <Float speed={1.2} rotationIntensity={0.3} floatIntensity={0.5}>
                 <mesh>
-                  <torusKnotGeometry args={[1.5, 0.5, 128, 16]} />
+                  <torusKnotGeometry args={[1.3, 0.4, 128, 16]} />
                   <meshPhysicalMaterial 
                     color="#22c55e"
                     metalness={0.8}
-                    roughness={0.2}
+                    roughness={0.15}
                     emissive="#22c55e"
                     emissiveIntensity={0.2}
-                    wireframe={false}
-                    clearcoat={0.8}
-                    clearcoatRoughness={0.2}
+                    clearcoat={0.9}
+                    clearcoatRoughness={0.1}
                   />
                 </mesh>
               </Float>
 
               {/* Orbiting Rings */}
-              <Float speed={0.8} rotationIntensity={0.5} floatIntensity={0.3}>
-                <mesh position={[0, 0, 0]}>
-                  <ringGeometry args={[2.2, 2.4, 64]} />
-                  <meshBasicMaterial color="#22c55e" transparent opacity={0.15} side={2} />
+              <Float speed={0.6} rotationIntensity={0.3} floatIntensity={0.3}>
+                <mesh position={[0, 0, 0]} rotation={[0.4, 0.6, 0]}>
+                  <ringGeometry args={[2.0, 2.2, 64]} />
+                  <meshBasicMaterial color="#22c55e" transparent opacity={0.12} side={2} />
                 </mesh>
               </Float>
 
-              <Float speed={1.2} rotationIntensity={0.5} floatIntensity={0.3}>
-                <mesh position={[0, 0, 0]} rotation={[0.5, 0, 0]}>
-                  <ringGeometry args={[2.6, 2.8, 64]} />
-                  <meshBasicMaterial color="#06b6d4" transparent opacity={0.1} side={2} />
+              <Float speed={0.9} rotationIntensity={0.3} floatIntensity={0.3}>
+                <mesh position={[0, 0, 0]} rotation={[0.8, 0.2, 0.5]}>
+                  <ringGeometry args={[2.4, 2.6, 64]} />
+                  <meshBasicMaterial color="#06b6d4" transparent opacity={0.08} side={2} />
                 </mesh>
               </Float>
+
+              {/* Small Particles Orbiting */}
+              {[...Array(12)].map((_, i) => {
+                const angle = (i / 12) * Math.PI * 2;
+                return (
+                  <Float key={i} speed={0.3 + i * 0.05} rotationIntensity={0.1} floatIntensity={0.2}>
+                    <mesh 
+                      position={[
+                        Math.cos(angle) * 2.6,
+                        Math.sin(angle) * 2.6,
+                        Math.sin(angle * 2) * 0.5
+                      ]}
+                    >
+                      <sphereGeometry args={[0.035, 6, 6]} />
+                      <meshBasicMaterial color={i % 2 === 0 ? "#22c55e" : "#06b6d4"} transparent opacity={0.6} />
+                    </mesh>
+                  </Float>
+                );
+              })}
 
               <OrbitControls 
                 enableZoom={false}
                 enablePan={false}
                 autoRotate
                 autoRotateSpeed={2}
-                minPolarAngle={Math.PI / 3}
-                maxPolarAngle={Math.PI / 2}
+                minPolarAngle={Math.PI / 2.5}
+                maxPolarAngle={Math.PI / 1.8}
               />
             </Canvas>
           )}
+        </div>
+
+        {/* ====== RIGHT: JAVA + DSA ====== */}
+        <motion.div 
+          initial={{ opacity: 0, x: 40 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.6, ease: "easeOut" }}
+          className="order-3 text-left md:text-right"
+        >
+          {/* Line + Label - Right aligned */}
+          <div className="flex items-center gap-3 text-green-500 mb-3 justify-start md:justify-end">
+            <span className="text-[10px] tracking-[0.3em] font-mono font-bold uppercase text-green-400">Problem Solver</span>
+            <div className="w-8 h-[1px] bg-gradient-to-l from-green-500 to-transparent"></div>
+          </div>
+          
+          <h2 className="text-4xl md:text-5xl font-black text-white leading-tight mb-4">
+            JAVA + <span className="text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-cyan-400">DSA.</span>
+          </h2>
+          
+          <p className="text-gray-400 text-xs md:text-sm leading-relaxed max-w-[260px] md:ml-auto">
+            Expert in solving complex algorithmic challenges using Java. Deep understanding of Data Structures to write optimized, high-efficiency code.
+          </p>
+          <div className="mt-3 flex flex-wrap gap-2 justify-start md:justify-end">
+            {["Java", "DSA", "Algorithms", "Optimization"].map((tech, i) => (
+              <span key={i} className="text-[8px] font-bold text-green-400/70 border border-green-500/20 px-2.5 py-1 rounded-full bg-green-500/5 uppercase tracking-wider">
+                {tech}
+              </span>
+            ))}
+          </div>
+
+          {/* Download Button - Gradient Style */}
+          <motion.a
+            href="/Alok_Resume.pdf"
+            download="Alok_Resume.pdf"
+            whileHover={{ scale: 1.05, boxShadow: "0 0 40px rgba(34,197,94,0.3)" }}
+            whileTap={{ scale: 0.95 }}
+            className="mt-8 px-8 py-3 bg-gradient-to-r from-green-500 to-emerald-600 text-black font-bold rounded-full hover:shadow-[0_0_30px_rgba(34,197,94,0.3)] transition-all text-[9px] tracking-widest uppercase inline-block text-center"
+          >
+            Download CV_
+          </motion.a>
         </motion.div>
       </div>
 
-      {/* ====== 3. SCROLL INDICATOR ====== */}
+      {/* ====== SCROLL INDICATOR ====== */}
       <motion.div 
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        transition={{ delay: 1, duration: 1 }}
-        className="absolute bottom-8 left-1/2 transform -translate-x-1/2 flex flex-col items-center gap-2"
+        transition={{ delay: 1 }}
+        className="absolute bottom-6 left-1/2 transform -translate-x-1/2 flex flex-col items-center gap-2 z-10"
       >
-        <span className="text-gray-600 text-[8px] uppercase tracking-[0.3em]">Scroll</span>
+        <span className="text-gray-600 text-[7px] uppercase tracking-[0.4em] font-mono">Scroll</span>
         <motion.div 
           animate={{ y: [0, 8, 0] }}
           transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
