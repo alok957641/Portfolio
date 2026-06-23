@@ -8,11 +8,12 @@ const projects = [
   {
     title: "Swigo – Food Delivery",
     category: "Full Stack Platform",
+    
     image: "https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?q=80&w=2481&auto=format&fit=crop",
     tech: ["React", "Redux", "Node.js", "MongoDB", "Socket.IO"],
     desc: "Engineering a full-stack food delivery platform supporting 3 distinct dashboards – User, Admin, and Delivery Partner – covering the complete order lifecycle. JWT-based RBAC ensures zero cross-role data leakage. Real-time order tracking via Socket.IO enabling sub-second bidirectional updates.",
     status: "Ongoing",
-    liveLink: "#" // Swigo abhi ongoing hai
+    liveLink: "https://zyngo-omega.vercel.app/" 
   },
   {
     title: "NextHire.AI",
@@ -21,7 +22,7 @@ const projects = [
     tech: ["React", "Redux", "Node.js", "MongoDB", "Firebase", "Recharts"],
     desc: "AI interview platform with 3 modes (HR, Technical, Confidence Detection). PDF resume parsing auto-extracts skills for 100% personalized questions. Real-time analytics dashboard scoring candidates across technical depth, communication clarity, and confidence. Automated downloadable PDF performance reports.",
     status: "Live 2025",
-    liveLink: "https://nexthire.ai" // 🔴 Apni real link daal
+    liveLink: "https://interview-ai-app-cn7x.vercel.app/" 
   },
   {
     title: "AI Resume Builder",
@@ -30,7 +31,7 @@ const projects = [
     tech: ["React", "TypeScript", "Node.js", "MongoDB", "Gemini AI", "Razorpay"],
     desc: "Full-stack AI-powered SaaS resume builder with 11+ templates and 2-tier subscription (Free/Pro ₹299/mo) via Razorpay. Google Gemini API powers AI content improvement across 4 modules. ATS score checker, real-time preview, pixel-perfect PDF export, and shareable resume links with custom slugs.",
     status: "Live 2025",
-    liveLink: "https://resumebuilder.com" // 🔴 Apni real link daal
+    liveLink: "https://ai-resume-builder-bice-three.vercel.app/" 
   },
   {
     title: "NowInfoTech",
