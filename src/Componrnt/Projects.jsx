@@ -1,55 +1,57 @@
-import React, { useRef } from 'react';
-import { Canvas } from '@react-three/fiber';
-import { Stars } from '@react-three/drei';
+import { useRef } from 'react';
 import { motion } from 'framer-motion';
+import { ArrowLeft, ArrowRight, ArrowUpRight, Gauge, LockKeyhole, RadioTower, Smartphone } from 'lucide-react';
 
-// 🔥 REAL PROJECTS WITH ACTUAL DETAILS
 const projects = [
   {
-    title: "Swigo – Food Delivery",
-    category: "Full Stack Platform",
-    
+    title: "Swigo Food Delivery",
+    category: "MERN Platform",
     image: "https://i.pinimg.com/1200x/9a/bf/3e/9abf3e37c5d47cafad5011523e38a4d5.jpg",
-    tech: ["React", "Redux", "Node.js", "MongoDB", "Socket.IO"],
-    desc: "Engineering a full-stack food delivery platform supporting 3 distinct dashboards – User, Admin, and Delivery Partner – covering the complete order lifecycle. JWT-based RBAC ensures zero cross-role data leakage. Real-time order tracking via Socket.IO enabling sub-second bidirectional updates.",
+    tech: ["React", "Redux", "Node", "MongoDB", "Socket.IO"],
+    desc: "Food delivery app with dashboards, JWT role access, live tracking, REST APIs, and responsive UI.",
     status: "Ongoing",
-    liveLink: "https://zyngo-omega.vercel.app/" 
+    liveLink: "https://zyngo-omega.vercel.app/",
+    icon: RadioTower
+  },
+  {
+    title: "AI Buzz Agency",
+    category: "Agency Website",
+    image: "https://images.unsplash.com/photo-1557838923-2985c318be48?q=80&w=2662&auto=format&fit=crop",
+    tech: ["React", "Tailwind", "Framer", "Responsive"],
+    desc: "Responsive agency website with smooth animation, fast rendering, and cross-device polish.",
+    status: "Live",
+    liveLink: "https://aibuzz.media",
+    icon: Gauge
+  },
+  {
+    title: "Infotech Company",
+    category: "Business Website",
+    image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=2426&auto=format&fit=crop",
+    tech: ["React", "Tailwind", "Lenis", "Vercel"],
+    desc: "Business website with smooth scrolling, clean layout flow, and optimized responsive sections.",
+    status: "Live",
+    liveLink: "https://infotech-company.vercel.app/",
+    icon: Smartphone
   },
   {
     title: "NextHire.AI",
-    category: "AI Mock Interview Platform",
+    category: "AI Interview App",
     image: "https://i.pinimg.com/1200x/48/19/a9/4819a94d5fde7f464accb63ebcdb3539.jpg",
-    tech: ["React", "Redux", "Node.js", "MongoDB", "Firebase", "Recharts"],
-    desc: "AI interview platform with 3 modes (HR, Technical, Confidence Detection). PDF resume parsing auto-extracts skills for 100% personalized questions. Real-time analytics dashboard scoring candidates across technical depth, communication clarity, and confidence. Automated downloadable PDF performance reports.",
+    tech: ["React", "Redux", "Node", "Firebase", "Recharts"],
+    desc: "AI interview app with resume parsing, analytics dashboard, and downloadable reports.",
     status: "Live 2025",
-    liveLink: "https://interview-ai-app-cn7x.vercel.app/" 
+    liveLink: "https://interview-ai-app-cn7x.vercel.app/",
+    icon: LockKeyhole
   },
   {
     title: "AI Resume Builder",
     category: "SaaS Platform",
     image: "https://i.pinimg.com/736x/af/6e/e1/af6ee127828c7e8749b61b4e5fc85520.jpg",
-    tech: ["React", "TypeScript", "Node.js", "MongoDB", "Gemini AI", "Razorpay"],
-    desc: "Full-stack AI-powered SaaS resume builder with 11+ templates and 2-tier subscription (Free/Pro ₹299/mo) via Razorpay. Google Gemini API powers AI content improvement across 4 modules. ATS score checker, real-time preview, pixel-perfect PDF export, and shareable resume links with custom slugs.",
+    tech: ["React", "TypeScript", "Node", "Gemini", "Razorpay"],
+    desc: "AI resume builder with templates, ATS score, live preview, PDF export, and share links.",
     status: "Live 2025",
-    liveLink: "https://ai-resume-builder-bice-three.vercel.app/" 
-  },
-  {
-    title: "NowInfoTech",
-    category: "Corporate Platform",
-    image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=2426&auto=format&fit=crop",
-    tech: ["React", "Tailwind", "Responsive"],
-    desc: "A fully responsive business interface built with React. Focused on modular components and seamless navigation across all device breakpoints.",
-    status: "Live",
-    liveLink: "https://infotech-company.vercel.app/"
-  },
-  {
-    title: "AiBuzz Media",
-    category: "Influencer Agency",
-    image: "https://images.unsplash.com/photo-1557838923-2985c318be48?q=80&w=2662&auto=format&fit=crop",
-    tech: ["React", "Nodemailer", "Tailwind"],
-    desc: "A specialized agency portal featuring custom Nodemailer integration for automated lead generation and secure client communication.",
-    status: "Live",
-    liveLink: "https://aibuzz.media"
+    liveLink: "https://ai-resume-builder-bice-three.vercel.app/",
+    icon: Gauge
   }
 ];
 
@@ -57,134 +59,121 @@ const Projects = () => {
   const scrollRef = useRef(null);
 
   const scroll = (direction) => {
-    if (scrollRef.current) {
-      const { scrollLeft, clientWidth } = scrollRef.current;
-      const scrollTo = direction === 'left' ? scrollLeft - clientWidth : scrollLeft + clientWidth;
-      scrollRef.current.scrollTo({ left: scrollTo, behavior: 'smooth' });
-    }
+    if (!scrollRef.current) return;
+    const { scrollLeft, clientWidth } = scrollRef.current;
+    scrollRef.current.scrollTo({
+      left: direction === 'left' ? scrollLeft - clientWidth * 0.85 : scrollLeft + clientWidth * 0.85,
+      behavior: 'smooth'
+    });
+  };
+
+  const handlePointerMove = (event) => {
+    const card = event.currentTarget;
+    const rect = card.getBoundingClientRect();
+    card.style.setProperty('--mouse-x', `${event.clientX - rect.left}px`);
+    card.style.setProperty('--mouse-y', `${event.clientY - rect.top}px`);
   };
 
   return (
-    <section id='projects' className="relative min-h-screen bg-black py-20 px-6 overflow-hidden flex flex-col justify-center">
-      
-      {/* STAR BACKGROUND */}
-      <div className="absolute inset-0 z-0">
-        <Canvas>
-          <Stars radius={100} depth={50} count={5000} factor={4} saturation={0} fade speed={1} />
-        </Canvas>
-      </div>
-
-      <div className="container mx-auto relative z-10 max-w-6xl">
-        
-        {/* HEADER */}
-        <div className="mb-20">
-          <motion.div
-            initial={{ opacity: 0, x: -20 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            className="flex items-center gap-3 mb-4"
-          >
-            <div className="h-[1px] w-8 bg-green-500"></div>
-            <span className="text-green-500 font-mono text-xs tracking-[0.5em] uppercase">My Work</span>
-          </motion.div>
-          
+    <section id="projects" className="section-pad relative">
+      <div className="section-inner">
+        <div className="mb-8 flex flex-col justify-between gap-4 sm:flex-row sm:items-end">
           <div>
-            <h3 className="text-3xl md:text-4xl font-black text-white uppercase tracking-tighter">
-              Featured <span className="text-green-500 italic"> Projects</span>
+            <motion.div
+              initial={{ opacity: 0, x: -16 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              className="eyebrow mb-3"
+            >
+              My Work
+            </motion.div>
+            <h3 className="headline">
+              Featured <span className="text-gradient">projects.</span>
             </h3>
+          </div>
+
+          <div className="flex gap-2">
+            <button
+              type="button"
+              onClick={() => scroll('left')}
+              aria-label="Scroll projects left"
+              className="grid h-10 w-10 place-items-center rounded-full border border-violet-100/12 bg-violet-200/[0.06] text-white transition hover:bg-violet-600"
+            >
+              <ArrowLeft size={16} />
+            </button>
+            <button
+              type="button"
+              onClick={() => scroll('right')}
+              aria-label="Scroll projects right"
+              className="grid h-10 w-10 place-items-center rounded-full border border-violet-100/12 bg-violet-200/[0.06] text-white transition hover:bg-violet-600"
+            >
+              <ArrowRight size={16} />
+            </button>
           </div>
         </div>
 
-        {/* PROJECT SLIDER */}
-        <div 
-          ref={scrollRef}
-          className="flex gap-6 overflow-x-auto scrollbar-hide snap-x snap-mandatory pb-10 px-2"
-          style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
-        >
-          {projects.map((project, index) => (
-            <motion.div
-              key={index}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: index * 0.1 }}
-              className="min-w-[85vw] md:min-w-[400px] snap-center group"
-            >
-              <div className="bg-white/[0.03] border border-white/10 rounded-[2rem] overflow-hidden hover:border-green-500/30 transition-all duration-500 backdrop-blur-xl h-full flex flex-col">
-                
-                {/* PROJECT IMAGE */}
-                <a href={project.liveLink} target="_blank" rel="noopener noreferrer" className="relative h-52 overflow-hidden block">
-                  <img src={project.image} alt={project.title} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 opacity-60 group-hover:opacity-100" />
-                  <div className="absolute top-4 right-4 bg-black/60 backdrop-blur-md px-3 py-1 rounded-full border border-white/10">
-                    <span className={`text-[8px] font-black uppercase tracking-widest ${
-                      project.status === "Ongoing" ? "text-yellow-500" : 
-                      project.status === "Live 2025" ? "text-green-500" : "text-green-500"
-                    }`}>
-                      {project.status}
-                    </span>
-                  </div>
+        <div ref={scrollRef} className="hide-scrollbar flex snap-x snap-mandatory gap-4 overflow-x-auto pb-5">
+          {projects.map((project, index) => {
+            const Icon = project.icon;
+
+            return (
+              <motion.article
+                key={project.title}
+                initial={{ opacity: 0, y: 18 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-60px" }}
+                transition={{ delay: index * 0.05 }}
+                onPointerMove={handlePointerMove}
+                className="spotlight-card glass-panel group min-w-[82vw] snap-center overflow-hidden rounded-[22px] transition duration-300 hover:-translate-y-1 sm:min-w-[330px] md:min-w-[360px]"
+              >
+                <a href={project.liveLink} target="_blank" rel="noopener noreferrer" className="relative block h-40 overflow-hidden">
+                  <img
+                    src={project.image}
+                    alt={project.title}
+                    className="h-full w-full object-cover opacity-72 transition duration-700 group-hover:scale-105 group-hover:opacity-90"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#070312] via-[#070312]/20 to-transparent" />
+                  <span className="absolute left-3 top-3 rounded-full border border-violet-100/15 bg-black/50 px-2.5 py-1 text-[8px] font-black uppercase tracking-[0.18em] text-violet-100 backdrop-blur-xl">
+                    {project.status}
+                  </span>
                 </a>
 
-                {/* PROJECT DETAILS */}
-                <div className="p-6 flex flex-col flex-grow">
-                  <h4 className="text-xl font-black text-white uppercase mb-1 group-hover:text-green-500 transition-colors">
-                    {project.title}
-                  </h4>
-                  <p className="text-green-500 font-mono text-[9px] uppercase tracking-widest mb-3">
-                    {project.category}
-                  </p>
-                  
-                  <p className="text-gray-300 text-xs leading-relaxed mb-4 flex-grow">
-                    {project.desc}
-                  </p>
+                <div className="relative z-10 flex flex-col p-4">
+                  <div className="mb-4 flex items-start justify-between gap-3">
+                    <div>
+                      <p className="text-[8px] font-black uppercase tracking-[0.22em] text-violet-200/72">{project.category}</p>
+                      <h4 className="mt-1.5 text-lg font-black text-white">{project.title}</h4>
+                    </div>
+                    <div className="grid h-9 w-9 shrink-0 place-items-center rounded-xl bg-violet-600 text-white shadow-[0_0_20px_rgba(139,92,246,0.35)]">
+                      <Icon size={16} />
+                    </div>
+                  </div>
 
-                  {/* TECH STACK */}
-                  <div className="flex flex-wrap gap-1.5 mb-5">
-                    {project.tech.map((tag, i) => (
-                      <span key={i} className="text-[7px] font-bold text-gray-400 border border-white/10 px-2 py-1 rounded-md bg-white/5 uppercase tracking-wider">
+                  <p className="min-h-[48px] text-[12px] leading-6 text-violet-100/56">{project.desc}</p>
+
+                  <div className="mt-4 flex flex-wrap gap-1.5">
+                    {project.tech.map((tag) => (
+                      <span key={tag} className="rounded-full border border-violet-100/10 bg-black/22 px-2.5 py-1 text-[8px] font-bold text-violet-50/70">
                         {tag}
                       </span>
                     ))}
                   </div>
 
-                  {/* LIVE LINK BUTTON */}
-                  <a 
-                    href={project.liveLink} 
-                    target="_blank" 
+                  <a
+                    href={project.liveLink}
+                    target="_blank"
                     rel="noopener noreferrer"
-                    className={`w-full py-2.5 text-center font-black text-[9px] uppercase tracking-widest rounded-xl transition-all duration-300 ${
-                      project.liveLink === "#" 
-                      ? "bg-gray-800 text-gray-500 cursor-not-allowed" 
-                      : "bg-white/[0.05] border border-white/10 text-white hover:bg-green-500 hover:text-black hover:border-green-500"
-                    }`}
+                    className="mt-4 inline-flex w-fit items-center gap-2 rounded-full bg-violet-600 px-4 py-2 text-[8px] font-black uppercase tracking-[0.16em] text-white shadow-[0_0_20px_rgba(139,92,246,0.32)] transition hover:bg-violet-500"
                   >
-                    {project.liveLink === "#" ? "🔨 In Development" : "🚀 Live Demo"}
+                    Live Demo
+                    <ArrowUpRight size={13} />
                   </a>
                 </div>
-              </div>
-            </motion.div>
-          ))}
-        </div>
-
-        {/* SCROLL BUTTONS */}
-        <div className="flex justify-center gap-4 mt-6">
-          <button 
-            onClick={() => scroll('left')}
-            className="bg-white/5 border border-white/10 text-white p-3 rounded-full hover:bg-green-500 hover:text-black transition-all duration-300"
-          >
-            ←
-          </button>
-          <button 
-            onClick={() => scroll('right')}
-            className="bg-white/5 border border-white/10 text-white p-3 rounded-full hover:bg-green-500 hover:text-black transition-all duration-300"
-          >
-            →
-          </button>
+              </motion.article>
+            );
+          })}
         </div>
       </div>
-      
-      {/* Background Glow */}
-      <div className="absolute top-1/2 left-0 w-[400px] h-[400px] bg-green-500/5 blur-[120px] rounded-full pointer-events-none"></div>
     </section>
   );
 };

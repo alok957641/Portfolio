@@ -1,4 +1,3 @@
-import { useState } from 'react'
 import './App.css'
 import Navbar from './Componrnt/Navbar'
 import  Home from './Componrnt/Home.jsx'
@@ -12,12 +11,10 @@ import SmoothScroll from './Componrnt/SmoothScroll.jsx'
 import { Toaster } from 'react-hot-toast';
 
 function App() {
-
-
   return (
     <>
       <SmoothScroll>
-      <main className="bg-black">
+      <main className="portfolio-shell">
         <Toaster position="top-center" reverseOrder={false} />
          <Navbar/>
          <Home/>

@@ -1,7 +1,10 @@
-import React, { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { Canvas } from "@react-three/fiber";
-import { OrbitControls, Stars, Float } from "@react-three/drei";
+import { Float, Stars } from "@react-three/drei";
+import { ArrowDown, Code2, ExternalLink, Send } from "lucide-react";
+
+const techPills = ["React", "Next.js", "TypeScript", "Node", "MongoDB", "Java", "DSA"];
 
 const Home = () => {
   const [isMobile, setIsMobile] = useState(false);
@@ -14,204 +17,153 @@ const Home = () => {
   }, []);
 
   return (
-    <section className="relative min-h-screen w-full bg-black flex items-center justify-center overflow-hidden">
-      
-      {/* ====== BACKGROUND ====== */}
-      {/* Gradient Orbs */}
-      <div className="absolute top-[-20%] right-[-10%] w-[600px] h-[600px] bg-gradient-to-br from-green-500/20 to-cyan-500/10 rounded-full blur-[150px] pointer-events-none"></div>
-      <div className="absolute bottom-[-20%] left-[-10%] w-[600px] h-[600px] bg-gradient-to-tr from-green-500/10 to-cyan-500/10 rounded-full blur-[150px] pointer-events-none"></div>
+    <section id="top" className="relative flex min-h-screen items-center overflow-hidden px-6 pb-14 pt-28">
+      <div className="hero-arc" />
 
-      {/* Grid Pattern */}
-      <div className="absolute inset-0 z-0 opacity-[0.03]">
-        <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff10_1px,transparent_1px),linear-gradient(to_bottom,#ffffff10_1px,transparent_1px)] bg-[size:80px_80px]"></div>
+      <div className="absolute inset-0 opacity-55">
+        {!isMobile && (
+          <Canvas camera={{ position: [0, 0, 7], fov: 48 }}>
+            <Stars radius={80} depth={45} count={1300} factor={2.4} saturation={0} fade speed={0.25} />
+            <ambientLight intensity={1.1} />
+            <Float speed={1.1} rotationIntensity={0.35} floatIntensity={0.55}>
+              <mesh position={[-2.8, -0.45, -0.4]} rotation={[0.4, 0.6, 0.2]}>
+                <icosahedronGeometry args={[1.05, 1]} />
+                <meshStandardMaterial color="#8b5cf6" metalness={0.45} roughness={0.24} wireframe />
+              </mesh>
+            </Float>
+          </Canvas>
+        )}
       </div>
 
-      {/* ====== NEON NAME BACKGROUND ====== */}
-      <div className="absolute inset-0 flex items-center justify-center select-none pointer-events-none z-0">
-        <motion.h1
-          initial={{ opacity: 0.5 }}
-          animate={{ opacity: [0.3, 0.6, 0.3] }}
-          transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
-          className="text-[30vw] md:text-[25vw] font-black text-green-500/15 tracking-tighter uppercase italic leading-none"
-          style={{
-            textShadow: `
-              0 0 20px rgba(34, 197, 94, 0.5),
-              0 0 60px rgba(34, 197, 94, 0.2),
-              0 0 100px rgba(34, 197, 94, 0.1)
-            `,
-          }}
+      <div className="section-inner relative z-10">
+        <motion.div
+          initial={{ opacity: 0, y: 24 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.7, ease: "easeOut" }}
+          className="mx-auto max-w-4xl text-center"
         >
-          ALOK
-        </motion.h1>
-      </div>
-
-      {/* ====== MAIN CONTENT ====== */}
-      <div className="container mx-auto px-6 relative z-10 grid grid-cols-1 md:grid-cols-3 items-center gap-8 min-h-[80vh]">
-        
-        {/* ====== LEFT: MERN ====== */}
-        <motion.div 
-          initial={{ opacity: 0, x: -40 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.6 }}
-          className="order-2 md:order-1 text-left"
-        >
-          <div className="flex items-center gap-3 text-green-500 mb-3">
-            <div className="w-8 h-[1px] bg-gradient-to-r from-green-500 to-transparent"></div>
-            <span className="text-[10px] tracking-[0.3em] font-mono font-bold uppercase text-green-400">Software Dev</span>
+          <div className="mb-5 inline-flex items-center gap-2 rounded-full border border-violet-300/15 bg-violet-300/10 px-4 py-2 text-[10px] font-bold uppercase tracking-[0.22em] text-violet-100 shadow-[0_0_30px_rgba(139,92,246,0.22)]">
+            Portfolio 2026
           </div>
-          
-          <h2 className="text-4xl md:text-5xl font-black text-white leading-tight mb-4">
-            MERN <span className="text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-cyan-400">Stack.</span>
-          </h2>
-          
-          <p className="text-gray-400 text-xs md:text-sm leading-relaxed max-w-[260px]">
-            Specialized in building scalable web apps with MongoDB, Express, React, and Node.js. I focus on crafting seamless UIs and robust backend architectures.
+          <h1 className="mx-auto max-w-3xl text-[clamp(2.35rem,5.2vw,4.25rem)] font-extrabold leading-[1.06] tracking-[-0.01em] text-white">
+            Modern portfolio for <span className="text-gradient">MERN stack development.</span>
+          </h1>
+          <p className="mx-auto mt-5 max-w-2xl text-sm leading-7 text-violet-100/62 md:text-base">
+            I am Alok Kumar, building clean web apps with React, Next.js, TypeScript, Node, MongoDB, Java logic, and smooth user-focused animation.
           </p>
-          <div className="mt-3 flex flex-wrap gap-2">
-            {["MongoDB", "Express", "React", "Node"].map((tech, i) => (
-              <span key={i} className="text-[8px] font-bold text-green-400/70 border border-green-500/20 px-2.5 py-1 rounded-full bg-green-500/5 uppercase tracking-wider">
+
+          <div className="mt-7 flex flex-wrap justify-center gap-2.5">
+            {techPills.map((tech, index) => (
+              <motion.span
+                key={tech}
+                initial={{ opacity: 0, y: 8 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.16 + index * 0.05 }}
+                className="rounded-full border border-violet-200/12 bg-violet-200/[0.055] px-3.5 py-2 text-[10px] font-bold uppercase tracking-[0.16em] text-violet-100/70"
+              >
                 {tech}
-              </span>
+              </motion.span>
             ))}
+          </div>
+
+          <div className="mt-8 flex flex-col justify-center gap-3 sm:flex-row">
+            <motion.a
+              href="#projects"
+              whileHover={{ y: -2 }}
+              whileTap={{ scale: 0.98 }}
+              className="inline-flex items-center justify-center gap-2.5 rounded-full bg-violet-600 px-6 py-3.5 text-[10px] font-black uppercase tracking-[0.18em] text-white shadow-[0_0_35px_rgba(139,92,246,0.48)] transition hover:bg-violet-500"
+            >
+              <Code2 size={15} />
+              View Work
+            </motion.a>
+            <motion.a
+              href="#contact"
+              whileHover={{ y: -2 }}
+              whileTap={{ scale: 0.98 }}
+              className="inline-flex items-center justify-center gap-2.5 rounded-full border border-violet-100/18 bg-black/20 px-6 py-3.5 text-[10px] font-black uppercase tracking-[0.18em] text-violet-50 transition hover:bg-violet-100/10"
+            >
+              <Send size={15} />
+              Contact
+            </motion.a>
           </div>
         </motion.div>
 
-        {/* ====== CENTER: 3D ====== */}
-        <div className="h-[400px] md:h-[600px] w-full order-1 md:order-2 relative flex justify-center items-center">
-          
-          {isMobile ? (
-            /* Mobile Static */
-            <div className="relative w-64 h-64 flex items-center justify-center">
-              <div className="absolute inset-0 bg-gradient-to-br from-green-500/20 to-cyan-500/20 rounded-full blur-[100px] animate-pulse"></div>
-              <div className="relative w-48 h-48 rounded-full border border-green-500/20 flex items-center justify-center backdrop-blur-sm bg-black/40">
-                <div className="text-center">
-                  <div className="text-6xl mb-2">⚡</div>
-                  <p className="text-green-400 text-[9px] font-mono tracking-widest">ALOK</p>
-                  <p className="text-gray-500 text-[7px] font-mono tracking-wider">Full Stack</p>
+        <motion.div
+          initial={{ opacity: 0, y: 28, scale: 0.98 }}
+          animate={{ opacity: 1, y: 0, scale: 1 }}
+          transition={{ duration: 0.75, delay: 0.12, ease: "easeOut" }}
+          className="animated-border mx-auto mt-14 max-w-4xl rounded-[28px] p-[1px]"
+        >
+          <div className="glass-panel relative overflow-hidden rounded-[28px] p-4 md:p-5">
+            <div className="absolute right-0 top-0 h-40 w-72 bg-violet-500/20 blur-[70px]" />
+            <div className="grid gap-5 md:grid-cols-[0.85fr_1.15fr] md:items-center">
+              <div className="relative overflow-hidden rounded-[22px] border border-violet-100/12 bg-black/20">
+                <img
+                  src="/alok.png"
+                  alt="Alok Kumar"
+                  className="aspect-[4/4.2] w-full object-cover object-top opacity-90"
+                />
+                <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-[#080312] to-transparent p-4">
+                  <p className="text-[10px] font-black uppercase tracking-[0.24em] text-violet-100/70">Available for work</p>
+                  <h2 className="mt-1 text-lg font-black text-white">Alok Kumar</h2>
+                </div>
+              </div>
+
+              <div className="relative p-2 md:p-4">
+                <div className="mb-7 flex items-center justify-between gap-4">
+                  <div>
+                    <p className="text-[10px] font-black uppercase tracking-[0.25em] text-violet-200/60">Developer Console</p>
+                    <h3 className="mt-2 text-2xl font-bold text-white md:text-3xl">MERN + Java DSA</h3>
+                  </div>
+                  <a
+                    href="#contact"
+                    className="grid h-11 w-11 shrink-0 place-items-center rounded-full bg-violet-500 text-white shadow-[0_0_25px_rgba(139,92,246,0.5)] transition hover:bg-violet-400"
+                    aria-label="Open contact section"
+                  >
+                    <ExternalLink size={17} />
+                  </a>
+                </div>
+
+                <div className="grid gap-3 sm:grid-cols-3">
+                  {[
+                    ["5+", "Projects"],
+                    ["24h", "Response"],
+                    ["2026", "Portfolio"],
+                  ].map(([value, label]) => (
+                    <div key={label} className="rounded-2xl border border-violet-100/12 bg-black/22 p-4">
+                      <p className="text-2xl font-black text-white">{value}</p>
+                      <p className="mt-1 text-[9px] font-bold uppercase tracking-[0.2em] text-violet-100/45">{label}</p>
+                    </div>
+                  ))}
+                </div>
+
+                <div className="mt-5 rounded-2xl border border-violet-100/12 bg-black/22 p-4">
+                  <div className="mb-3 flex items-center justify-between text-[10px] font-bold uppercase tracking-[0.18em] text-violet-100/50">
+                    <span>Frontend</span>
+                    <span>92%</span>
+                  </div>
+                  <div className="h-2 rounded-full bg-violet-950">
+                    <div className="h-full w-[92%] rounded-full bg-gradient-to-r from-violet-700 via-violet-400 to-violet-200 shadow-[0_0_25px_rgba(139,92,246,0.65)]" />
+                  </div>
                 </div>
               </div>
             </div>
-          ) : (
-            /* Desktop 3D */
-            <Canvas camera={{ position: [0, 0, 6], fov: 40 }}>
-              <Stars radius={80} depth={60} count={3000} factor={4} saturation={0} fade speed={0.5} />
-              
-              {/* Main Object */}
-              <Float speed={1.2} rotationIntensity={0.3} floatIntensity={0.5}>
-                <mesh>
-                  <torusKnotGeometry args={[1.2, 0.4, 128, 16]} />
-                  <meshPhysicalMaterial 
-                    color="#22c55e"
-                    metalness={0.8}
-                    roughness={0.15}
-                    emissive="#22c55e"
-                    emissiveIntensity={0.3}
-                    clearcoat={0.9}
-                    clearcoatRoughness={0.1}
-                  />
-                </mesh>
-              </Float>
-
-              {/* Orbiting Ring 1 */}
-              <Float speed={0.6} rotationIntensity={0.3} floatIntensity={0.3}>
-                <mesh rotation={[0.4, 0.6, 0]}>
-                  <ringGeometry args={[1.9, 2.1, 64]} />
-                  <meshBasicMaterial color="#22c55e" transparent opacity={0.15} side={2} />
-                </mesh>
-              </Float>
-
-              {/* Orbiting Ring 2 */}
-              <Float speed={0.9} rotationIntensity={0.3} floatIntensity={0.3}>
-                <mesh rotation={[0.8, 0.2, 0.5]}>
-                  <ringGeometry args={[2.3, 2.5, 64]} />
-                  <meshBasicMaterial color="#06b6d4" transparent opacity={0.1} side={2} />
-                </mesh>
-              </Float>
-
-              {/* Orbiting Particles */}
-              {[...Array(12)].map((_, i) => {
-                const angle = (i / 12) * Math.PI * 2;
-                return (
-                  <Float key={i} speed={0.5} rotationIntensity={0.1} floatIntensity={0.2}>
-                    <mesh 
-                      position={[
-                        Math.cos(angle + Date.now() * 0.0005) * 2.5,
-                        Math.sin(angle + Date.now() * 0.0005) * 2.5,
-                        Math.sin(angle * 2) * 0.5
-                      ]}
-                    >
-                      <sphereGeometry args={[0.03, 6, 6]} />
-                      <meshBasicMaterial color={i % 2 === 0 ? "#22c55e" : "#06b6d4"} transparent opacity={0.6} />
-                    </mesh>
-                  </Float>
-                );
-              })}
-
-              <OrbitControls 
-                enableZoom={false}
-                enablePan={false}
-                autoRotate
-                autoRotateSpeed={2}
-                minPolarAngle={Math.PI / 2.5}
-                maxPolarAngle={Math.PI / 1.8}
-              />
-            </Canvas>
-          )}
-        </div>
-
-        {/* ====== RIGHT: JAVA ====== */}
-        <motion.div 
-          initial={{ opacity: 0, x: 40 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.6 }}
-          className="order-3 text-left md:text-right"
-        >
-          <div className="flex items-center gap-3 text-green-500 mb-3 justify-start md:justify-end">
-            <span className="text-[10px] tracking-[0.3em] font-mono font-bold uppercase text-green-400">Problem Solver</span>
-            <div className="w-8 h-[1px] bg-gradient-to-l from-green-500 to-transparent"></div>
           </div>
-          
-          <h2 className="text-4xl md:text-5xl font-black text-white leading-tight mb-4">
-            JAVA + <span className="text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-cyan-400">DSA.</span>
-          </h2>
-          
-          <p className="text-gray-400 text-xs md:text-sm leading-relaxed max-w-[260px] md:ml-auto">
-            Expert in solving complex algorithmic challenges using Java. Deep understanding of Data Structures to write optimized, high-efficiency code.
-          </p>
-          <div className="mt-3 flex flex-wrap gap-2 justify-start md:justify-end">
-            {["Java", "DSA", "Algorithms", "Optimization"].map((tech, i) => (
-              <span key={i} className="text-[8px] font-bold text-green-400/70 border border-green-500/20 px-2.5 py-1 rounded-full bg-green-500/5 uppercase tracking-wider">
-                {tech}
-              </span>
-            ))}
-          </div>
-
-          <motion.a
-            href="/Alok_Resume.pdf"
-            download="Alok_Resume.pdf"
-            whileHover={{ scale: 1.05, boxShadow: "0 0 40px rgba(34,197,94,0.3)" }}
-            whileTap={{ scale: 0.95 }}
-            className="mt-8 px-8 py-3 bg-gradient-to-r from-green-500 to-emerald-600 text-black font-bold rounded-full hover:shadow-[0_0_30px_rgba(34,197,94,0.3)] transition-all text-[9px] tracking-widest uppercase inline-block text-center"
-          >
-            Download CV_
-          </motion.a>
         </motion.div>
       </div>
 
-      {/* ====== SCROLL INDICATOR ====== */}
-      <motion.div 
+      <motion.a
+        href="#about"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        transition={{ delay: 1 }}
-        className="absolute bottom-6 left-1/2 transform -translate-x-1/2 flex flex-col items-center gap-2 z-10"
+        transition={{ delay: 0.9 }}
+        className="absolute bottom-6 left-1/2 z-10 flex -translate-x-1/2 flex-col items-center gap-2 text-[9px] font-black uppercase tracking-[0.3em] text-violet-100/35"
       >
-        <span className="text-gray-600 text-[7px] uppercase tracking-[0.4em] font-mono">Scroll</span>
-        <motion.div 
-          animate={{ y: [0, 8, 0] }}
-          transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
-          className="w-[1px] h-8 bg-gradient-to-b from-green-500 to-transparent"
-        ></motion.div>
-      </motion.div>
+        Scroll
+        <motion.span animate={{ y: [0, 7, 0] }} transition={{ duration: 1.5, repeat: Infinity }}>
+          <ArrowDown size={15} />
+        </motion.span>
+      </motion.a>
     </section>
   );
 };

@@ -1,112 +1,134 @@
-import React from 'react';
 import { motion } from 'framer-motion';
+import { BriefcaseBusiness, GraduationCap, MapPin, Medal, Rocket, Sparkles } from 'lucide-react';
 
 const highlights = [
-  { id: "01", title: "Core Logic", label: "DSA & Java", desc: "Crafting optimized algorithms with deep mathematical reasoning." },
-  { id: "02", title: "Full Stack", label: "MERN Architecture", desc: "Building scalable ecosystems from MongoDB to complex React UIs." },
-  { id: "03", title: "Visuals", label: "Framer & Motion", desc: "Designing fluid, high-performance animations that engage users." },
-  { id: "04", title: "Execution", label: "Git & Deployment", desc: "Automating workflows and ensuring 99.9% system stability." }
+  { icon: BriefcaseBusiness, title: "Freelance MERN Developer", desc: "Developing and deploying responsive web applications since 2024." },
+  { icon: Sparkles, title: "Animated UI Specialist", desc: "Building modern layouts with Tailwind CSS, Framer Motion, and smooth interaction details." },
+  { icon: Rocket, title: "Performance Focused", desc: "Optimized layouts, fast rendering, and deployment-ready frontends on Vercel." },
+  { icon: Medal, title: "Problem Solver", desc: "Java, DSA, REST APIs, and clean debugging habits for scalable product logic." }
+];
+
+const timeline = [
+  {
+    title: "BCA - Bachelor of Computer Applications",
+    place: "BN College, Bhagalpur (TMBU)",
+    meta: "2024 - 2027"
+  },
+  {
+    title: "12th - 77.0%",
+    place: "K.S.S College, Lakhisarai",
+    meta: "2022 - 2024"
+  }
 ];
 
 const About = () => {
-  return (
-    <section id="about" className="relative min-h-screen bg-black flex items-center py-20 px-6 overflow-hidden">
-      
-      {/* --- 1. CLEAN BACKGROUND GLOW (No 3D/Canvas = Zero Lag) --- */}
-      <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
-        {/* Subtle Green Nebula Glow */}
-        <div className="absolute top-1/4 -left-20 w-80 h-80 bg-green-500/10 blur-[120px] rounded-full"></div>
-        <div className="absolute bottom-1/4 -right-20 w-80 h-80 bg-green-500/5 blur-[120px] rounded-full"></div>
-        
-        {/* Static CSS Stars (Simple & Fast) */}
-        <div className="absolute inset-0 opacity-20" 
-             style={{ backgroundImage: `radial-gradient(circle, #ffffff 1px, transparent 1px)`, backgroundSize: '50px 50px' }}>
-        </div>
-      </div>
+  const handlePointerMove = (event) => {
+    const card = event.currentTarget;
+    const rect = card.getBoundingClientRect();
+    card.style.setProperty('--mouse-x', `${event.clientX - rect.left}px`);
+    card.style.setProperty('--mouse-y', `${event.clientY - rect.top}px`);
+  };
 
-      <div className="container mx-auto relative z-10 max-w-6xl">
-        
-        {/* HEADING SECTION */}
-        <div className="mb-16">
+  return (
+    <section id="about" className="section-pad relative">
+      <div className="section-inner">
+        <div className="mb-8 max-w-2xl">
           <motion.div
             initial={{ opacity: 0, x: -20 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
-            className="flex items-center gap-3 mb-4"
+            className="eyebrow mb-3"
           >
-            <div className="h-[1px] w-8 bg-green-500"></div>
-            <span className="text-green-500 font-mono text-[10px] tracking-[0.5em] uppercase font-bold">About Me</span>
+            About Me
           </motion.div>
-          
-          <h3 className="text-4xl md:text-5xl font-black text-white uppercase tracking-tighter leading-none">
-            Passionate<span className="text-green-500 italic"> Developer</span>
+          <h3 className="headline text-[clamp(2rem,4.2vw,3.4rem)]">
+            Full stack developer with <span className="text-gradient">freelance execution.</span>
           </h3>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
-          
-          {/* --- LEFT: TYPOGRAPHY (TEXT SAME REHGA) --- */}
-          <motion.div 
-            initial={{ opacity: 0, y: 20 }}
+        <div className="grid gap-4 lg:grid-cols-[1.05fr_0.95fr]">
+          <motion.div
+            initial={{ opacity: 0, y: 24 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="space-y-8"
+            onPointerMove={handlePointerMove}
+            className="spotlight-card glass-panel soft-card-grid rounded-[24px] p-5 md:p-6"
           >
-            <div className="space-y-6 text-gray-400 text-lg md:text-xl font-light leading-relaxed">
-              <p className="border-l-2 border-green-500/30 pl-6">
-                I am <span className="text-white font-bold">Alok Kumar</span>, a digital architect currently pursuing <span className="text-white underline underline-offset-8 decoration-green-500/50">BCA (4th Sem)</span> at BN College, Bhagalpur.
-              </p>
-              <p className="pl-6">
-                Specialized in the <span className="text-green-500 font-mono font-bold">MERN Stack</span>, my approach combines deep <span className="text-white italic font-medium">DSA logic</span> with high-end animations.
-              </p>
-            </div>
+            <div className="relative z-10">
+              <div className="mb-8 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+                <div>
+                  <p className="text-[10px] font-black uppercase tracking-[0.26em] text-violet-200/70">Bhagalpur, Bihar</p>
+                  <h4 className="mt-2 text-2xl font-black text-white md:text-3xl">Alok Kumar</h4>
+                </div>
+                <div className="inline-flex w-fit items-center gap-2 rounded-full bg-violet-600 px-4 py-2 text-[10px] font-black uppercase tracking-[0.18em] text-white shadow-[0_0_26px_rgba(139,92,246,0.38)]">
+                  <MapPin size={14} />
+                  Available
+                </div>
+              </div>
 
-            {/* Premium Skill Tags */}
-            <div className="flex flex-wrap gap-2 pl-6">
-              {["React", "Node", "Java", "DSA", "Three.js", "Tailwind"].map((tag, i) => (
-                <span key={i} className="px-4 py-2 rounded-lg border border-white/10 bg-white/[0.03] text-white/60 text-[9px] font-black uppercase tracking-widest">
-                  {tag}
-                </span>
-              ))}
+              <p className="max-w-3xl text-sm leading-7 text-violet-50/70">
+                I am a Freelance MERN Stack Developer building responsive web apps with React, Node.js, Express.js, MongoDB, Tailwind CSS, and Framer Motion. I also work with Next.js and TypeScript for cleaner scalable frontends.
+              </p>
+              <p className="mt-4 max-w-3xl text-xs leading-6 text-violet-100/50">
+                My work focuses on performance, usability, REST APIs, JWT authentication, real-time features with Socket.IO, and smooth UI experiences across desktop, tablet, and mobile.
+              </p>
+
+              <div className="mt-6 grid gap-2.5 sm:grid-cols-3">
+                {[
+                  ["2024+", "Freelance"],
+                  ["MERN", "Core Stack"],
+                  ["Next.js", "Learning Done"]
+                ].map(([value, label]) => (
+                  <div key={label} className="rounded-2xl border border-violet-100/12 bg-black/22 p-3.5">
+                    <p className="text-xl font-black text-white">{value}</p>
+                    <p className="mt-1 text-[9px] font-bold uppercase tracking-[0.22em] text-violet-100/42">{label}</p>
+                  </div>
+                ))}
+              </div>
             </div>
           </motion.div>
 
-          {/* --- RIGHT: CLEAN GLASS CARDS (Fast & Responsive) --- */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 relative">
-            {highlights.map((item, index) => (
+          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-1">
+            {timeline.map((item, index) => (
               <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
+                key={item.title}
+                initial={{ opacity: 0, x: 24 }}
+                whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
-                transition={{ delay: index * 0.1 }}
-                className="p-6 md:p-8 rounded-[1.5rem] bg-white/[0.03] border border-white/5 backdrop-blur-md group hover:border-green-500/30 transition-all relative overflow-hidden"
+                transition={{ delay: index * 0.08 }}
+              className="glass-panel rounded-[22px] p-4"
               >
-                {/* ID Background Number */}
-                <span className="absolute -right-2 -top-2 text-6xl font-black text-white/[0.02] group-hover:text-green-500/5 transition-colors">
-                  {item.id}
-                </span>
-
-                <div className="relative z-10">
-                  <span className="text-[9px] font-black text-green-500 uppercase tracking-widest block mb-2 opacity-60">
-                    {item.label}
-                  </span>
-                  <h4 className="text-white font-black text-lg mb-2">
-                    {item.title}
-                  </h4>
-                  <p className="text-gray-500 text-[11px] leading-relaxed">
-                    {item.desc}
-                  </p>
+                <div className="mb-5 grid h-11 w-11 place-items-center rounded-2xl bg-violet-600 text-white">
+                  <GraduationCap size={20} />
                 </div>
+                <h4 className="text-base font-black text-white">{item.title}</h4>
+                <p className="mt-2 text-xs text-violet-100/56">{item.place}</p>
+                <p className="mt-4 text-[10px] font-black uppercase tracking-[0.22em] text-violet-200/70">{item.meta}</p>
               </motion.div>
             ))}
           </div>
+        </div>
 
+        <div className="mt-4 grid gap-3 md:grid-cols-2 lg:grid-cols-4">
+          {highlights.map(({ icon: Icon, title, desc }, index) => (
+            <motion.div
+              key={title}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: index * 0.06 }}
+              onPointerMove={handlePointerMove}
+              className="spotlight-card glass-panel rounded-[20px] p-4 transition hover:-translate-y-1"
+            >
+              <div className="relative z-10">
+                <Icon className="mb-5 text-violet-200" size={20} />
+                <h4 className="text-sm font-black text-white">{title}</h4>
+                <p className="mt-2 text-xs leading-5 text-violet-100/48">{desc}</p>
+              </div>
+            </motion.div>
+          ))}
         </div>
       </div>
-
-      {/* Subtle Bottom Glow Overlay */}
-      <div className="absolute -bottom-20 left-1/2 -translate-x-1/2 w-full h-40 bg-green-500/5 blur-[100px] pointer-events-none"></div>
     </section>
   );
 };
